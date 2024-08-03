@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Add Recipe{% endblock %}
+{% block content %}
+<h1>Add a Recipe!</h1>
+<div class="container-fluid">
+    <form action="" id="add_user_form" method="post" class="form-control bg-secondary-subtle">
+        {{ form.hidden_tag() }}
+
+        {% for field in form if field.widget.input_type != 'hidden'%}
+
+        <div class="d-grid gap-2">
+            {{ field.label }}
+            {{field}}
+
+            {% if field.errors %}
+            {% for error in field.errors %}
+            <b>{{ error }}</b>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+        <div class="d-grid m-4">
+            <button type="submit" class="btn btn-success">Add Recipe</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
