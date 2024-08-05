@@ -1,0 +1,18 @@
+<nav class="navbar bg-dark">
+    <div class="container-fluid">
+        <a href="/" class="navbar-brand text-light">Home</a>
+        {% if not session['username'] %}
+        <a href="/login" class="navbar-brand text-light">Login</a>
+        <a href="/register" class="navbar-brand text-light">Sign Up</a>
+        {% endif %}
+        {% if session['username'] %}
+        <a href="/users/{{session['username']}}" class="navbar-brand text-light">Profile</a>
+        <a href="/logout" class="navbar-brand text-light">Logout</a>
+        <a href="/users/{{user.username}}/recipe/add" class="navbar-brand text-light">Add Recipe</a>
+        {% endif %}
+        <form method="POST" action="{{url_for('search')}}" class="d-flex">
+            {{form.hidden_tag()}}<input type="text" placeholder="Search" name="searched"><button type="submit"
+                class="btn btn-outline-light">Search</button>
+        </form>
+    </div>
+</nav>

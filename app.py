@@ -171,8 +171,24 @@ def edit_recipe(recipe_id):
 
     return redirect(f'/users/{username}')
 
-# Implement this at home testing in a seperate widnow and ve first!!!
-@app.route('/test', methods = ['GET', 'POST'])
-def test_form():
-    form = RecipeForm()
-    subform = IngredientForm(prefix='ingredient-_-')
+@app.context_processor
+def base():
+    form = SearchForm()
+    return dict(form = form)
+
+@app.route('/search', methods = ['GET', 'POST'])
+def search():
+    form = SearchForm()
+    searched = form.searched.data
+    if form.validate_on_submit():
+        recipes = Recipe.query.filter(Recipe.title.like('%' + searched + '%'))
+        recipes = recipes.order_by(Recipe.title)
+
+        if 'username' not in session:
+            return render_template('search.html', form = form, searched = searched, recipes = recipes)
+        else:
+            username = session['username']
+            user = User.query.filter_by(username = username).first()
+            return render_template('search.html', form = form, searched = searched, user = user, recipes = recipes)
+        
+    return redirect('/')
