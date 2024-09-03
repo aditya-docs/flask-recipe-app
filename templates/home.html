@@ -2,11 +2,12 @@
 {% block title %}Alcoholics Asyncronous{% endblock %}
 {% block content %}
 <h1>Welcome to the Homepage!!!</h1>
-
-<ul>
+<div class="">
     {%for drink in drinks %}
-    <li>{{drink.title}}</li>
-    <img src="{{drink.image}}" alt="">
+    <div class="">
+        <a href="/recipes/{{drink.title}}">{{drink.title}}</a>
+        <img src="{{drink.image}}" alt="">
+    </div>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}

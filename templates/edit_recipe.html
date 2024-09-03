@@ -24,7 +24,12 @@
                         name="instructions" id="" class="form-control"></label>
             </div>
             <div class="d-grid m-4 col-2">
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit" class="btn btn-success m-2">Save</button>
+                <form class="">
+                    <button class="btn btn-danger m-2" formaction="/recipes/{{recipe.id}}/delete"
+                        formmethod="post">Delete
+                        Recipe</button>
+                </form>
             </div>
         </form>
     </div>

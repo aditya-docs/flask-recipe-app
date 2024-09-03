@@ -19,9 +19,9 @@ class IngredientForm(Form):
     
 class RecipeForm(FlaskForm):
     title = StringField('Title:', validators=[InputRequired()])
-    ingredients = FieldList(FormField(IngredientForm), min_entries=2, max_entries=10)
-    instructions = StringField('Instructions:', validators=[InputRequired()])
     image = URLField('Image URL:')
+    instructions = StringField('Instructions:', validators=[InputRequired()])
+    ingredients = FieldList(FormField(IngredientForm), min_entries=1, max_entries=5)
 
 class SearchForm(FlaskForm):
     searched = StringField('Search Term', validators=[InputRequired()])

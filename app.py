@@ -1,7 +1,6 @@
 from flask import Flask, render_template, redirect, session, flash, request
 from flask_debugtoolbar import DebugToolbarExtension
-from forms import LoginForm, RegisterForm, RecipeForm, IngredientForm, SearchForm
-import requests
+from forms import LoginForm, RegisterForm, RecipeForm, SearchForm
 from models import db, connect_db, User, Recipe, Ingredient, RecipeIngredient
 app = Flask(__name__)
 
@@ -171,10 +170,14 @@ def edit_recipe(recipe_id):
 
     return redirect(f'/users/{username}')
 
-@app.context_processor
-def base():
-    form = SearchForm()
-    return dict(form = form)
+@app.route('/recipes/<recipe_id>/delete', methods = ['POST'])
+def delete_recipe(recipe_id):
+    username = session['username']
+    recipe = Recipe.query.get_or_404(recipe_id)
+    db.session.delete(recipe)
+    db.session.commit()
+
+    return redirect(f'/users/{username}')
 
 @app.route('/search', methods = ['GET', 'POST'])
 def search():
@@ -192,3 +195,13 @@ def search():
             return render_template('search.html', form = form, searched = searched, user = user, recipes = recipes)
         
     return redirect('/')
+
+@app.route('/recipes/<drink_title>')
+def get_drink(drink_title):
+    recipes = Recipe.query.filter_by(title = drink_title).all()
+    if 'username' not in session:
+        return render_template('drink.html', recipes = recipes)
+    else:
+        username = session['username']
+        user = User.query.filter_by(username = username).first()
+        return render_template('drink.html', recipes = recipes, user = user)

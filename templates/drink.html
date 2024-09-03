@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-{% block title %}Recipe Search{% endblock %}
+{% block title %} {{cocktail_name}} {% endblock %}
 {% block content %}
-<h1>Search results for {{searched}}</h1>
 <div>
     {% for recipe in recipes %}
     <div class="card d-grid text-center bg-secondary-subtle">
@@ -26,4 +25,5 @@
     </div>
     {% endfor %}
 </div>
+
 {% endblock %}
