@@ -11,8 +11,8 @@
         <a href="/users/{{user.username}}/recipe/add" class="navbar-brand text-light">Add Recipe</a>
         {% endif %}
         <form method="POST" action="{{url_for('search')}}" class="d-flex">
-            {{form.hidden_tag()}}<input type="text" placeholder="Search" name="searched"><button type="submit"
-                class="btn btn-outline-light">Search</button>
+            {{form.hidden_tag()}}<input type="text" placeholder="Search" name="searched" class="searchbar"><button
+                type="submit" class="btn btn-outline-light">Search</button>
         </form>
     </div>
 </nav>

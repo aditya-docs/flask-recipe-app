@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}Alcoholics Asyncronous{% endblock %}
 {% block content %}
-<h1>Welcome to the Homepage!!!</h1>
-<div class="">
-    {%for drink in drinks %}
-    <div class="">
-        <a href="/recipes/{{drink.title}}">{{drink.title}}</a>
-        <img src="{{drink.image}}" alt="">
+<div class="container text-center">
+    <h1>Welcome to the Homepage!!!</h1>
+    <div class="row m-4">
+        {%for drink in drinks%}
+        <div class="col-4 text-center">
+            <img src="{{drink.image}}" height="300" width="300" class="image" alt="Random Drink">
+            <a href="/recipes/{{drink.title}}" class=" image-link fw-bold text-decoration-none">{{drink.title}}</a>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

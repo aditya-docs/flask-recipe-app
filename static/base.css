@@ -1,0 +1,18 @@
+.image {
+    border-radius: 3%;
+    margin-top: 10%;
+}
+
+.image-link {
+    font-size: 2rem;
+    color: black;
+    transition: color 0.5s;
+}
+
+.image-link:hover {
+    color: white
+}
+
+.searchbar {
+    border-radius: 4px;
+}

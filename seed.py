@@ -51,7 +51,7 @@ for url in API_Reqs:
 
 # seedData('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
 
-# Optimiation: Implement only 1 of each ingredient by separating it from measurement insted of storing multiple of the same
+# Optimization: Implement only 1 of each ingredient by separating it from measurement insted of storing multiple of the same
 # uniq_ingredients = set()
 # for ingredient in uniq_ingredients:
 #     new_ingredient = Ingredient(name = ingredient)

@@ -38,7 +38,7 @@ class User(db.Model):
             return user
         else:
             return False
-# make recipes visible to USERS AND SEE IF DELETING IT THROUGH THE WEB APP WORKS INSTEAD OF USING PSQL
+        
 class Recipe(db.Model):
     """Model for new and existing recipes"""
     __tablename__ = 'recipes'
@@ -56,7 +56,7 @@ class Recipe(db.Model):
         """Query 8 random drinks from the db"""
         nums = []
         drinks = []
-        for i in range(0, 8):
+        for i in range(0, 9):
             num = random.randint(1, 426)
             nums.append(num)
         for num in nums:

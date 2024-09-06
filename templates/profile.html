@@ -1,20 +1,26 @@
 {% extends 'base.html' %}
 {% block title%}{{user.username}}{% endblock %}
 {% block content %}
-<div class="container-fluid d-grid">
+<div class="container-fluid d-grid text-center">
     <h1>Profile</h1>
     <h4>First Name: {{user.first_name}}</h4>
     <h4>Last Name: {{user.last_name}}</h4>
     <h4>Username: {{user.username}}</h4>
     <h4>Email: {{user.email}}</h4>
-    <div>
+    <form class="d-flex justify-content-center">
+        <button class="btn btn-danger d-grid col-2 m-3 " formaction="/users/{{ user.username }}/delete"
+            formmethod="POST">
+            Delete User
+        </button>
+    </form>
+    <div class=" d-flex justify-content-center row">
         {% for recipe in recipes %}
-        <div class="card d-grid text-center bg-secondary-subtle">
+        <div class="card col-6 m-4 text-center bg-secondary-subtle">
             <div class="card-header">
                 <h5>{{recipe.title}}</h5>
             </div>
             <div class="card-body">
-                <img src="{{recipe.image}}" alt="">
+                <img src="{{recipe.image}}" class="m-2" height="300" width="300" alt="">
                 {% for ingredient in recipe.ingredients %}
                 <p>Ingredient: {{ingredient.ingredient_name}} Measurement: {{ingredient.measurement}}</p>
                 {% endfor %}
@@ -33,11 +39,6 @@
     </div>
 </div>
 </div>
-<form class="">
-    <button class="btn btn-danger d-grid col-2 m-3" formaction="/users/{{ user.username }}/delete" formmethod="POST">
-        Delete User
-    </button>
-</form>
 </div>
 
 {% endblock %}

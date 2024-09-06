@@ -1,29 +1,31 @@
 {% extends 'base.html' %}
 {% block title %}Recipe Search{% endblock %}
 {% block content %}
-<h1>Search results for {{searched}}</h1>
-<div>
-    {% for recipe in recipes %}
-    <div class="card d-grid text-center bg-secondary-subtle">
-        <div class="card-header">
-            <h5>{{recipe.title}}</h5>
-        </div>
-        <div class="card-body">
-            <img src="{{recipe.image}}" alt="">
-            {% for ingredient in recipe.ingredients %}
-            <p>Ingredient: {{ingredient.ingredient_name}} Measurement: {{ingredient.measurement}}</p>
-            {% endfor %}
-            <p>{{recipe.instructions}}</p>
-            <div class="card-footer">
-                {% if recipe.author == session['username'] %}
-                <form action="get" class="d-flex justify-content-center">
-                    <button formaction="/recipes/{{recipe.id}}/update"
-                        class="btn btn-sm btn-primary d-grid col-2">Edit</button>
-                </form>
-                {% endif %}
+<div class="text-center">
+    <h1 class="m-2">Search results for {{searched}}</h1>
+    <div class="d-flex justify-content-center row">
+        {% for recipe in recipes %}
+        <div class="card text-center col-8 m-4 bg-secondary-subtle">
+            <div class="card-header">
+                <h5>{{recipe.title}}</h5>
+            </div>
+            <div class="card-body">
+                <img src="{{recipe.image}}" height="450" width="450" alt="">
+                {% for ingredient in recipe.ingredients %}
+                <p>Ingredient: {{ingredient.ingredient_name}} Measurement: {{ingredient.measurement}}</p>
+                {% endfor %}
+                <p>{{recipe.instructions}}</p>
+                <div class="card-footer">
+                    {% if recipe.author == session['username'] %}
+                    <form action="get" class="d-flex justify-content-center">
+                        <button formaction="/recipes/{{recipe.id}}/update"
+                            class="btn btn-sm btn-primary d-grid col-2">Edit</button>
+                    </form>
+                    {% endif %}
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}
