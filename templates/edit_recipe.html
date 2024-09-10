@@ -1,32 +1,35 @@
 {% extends 'base.html' %}
 {% block title %}Edit Recipe{% endblock %}
 {% block content %}
-<h1>Edit Recipe</h1>
-<h1>{{nums}}</h1>
-<div class="row justify-content-center">
-    <div class="container-fluid">
-        <form action="/recipes/{{recipe.id}}/update" id="edit_recipe_form" method="post"
-            class="form-control bg-secondary-subtle">
-            <div class="col">
-                <label for="title">Title: <input type="text" value="{{recipe.title}}" name="title" id=""
-                        class="form-control"></label>
+<h1 class="text-center">Edit Recipe</h1>
+<div class="container">
+    <div class="d-flex justify-content-center row">
+        <form action="/recipes/{{recipe.id}}/update" id="edit_recipe_form" method="post" class="">
+            <div class="mb-2 col-6">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" value="{{recipe.title}}" name="title" id="" class="form-control">
             </div>
             {% for ingredient in recipe.ingredients %}
-            <div class="col">
-                <label for="ingredient_name">Ingredient: <input type="text" value="{{ingredient.ingredient_name}}"
-                        name="ingredient_name" id="" class="form-control"></label>
-                <label for="measurement">Measurement: <input type="text" value="{{ingredient.measurement}}"
-                        name="measurement" id="" class="form-control"></label>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label for="ingredient_name" class="form-label">Ingredient:</label>
+                    <input type="text" value="{{ingredient.ingredient_name}}" name="ingredient_name" id=""
+                        class="form-control">
+                </div>
+                <div class="col-6 mb-2">
+                    <label for="measurement" class="form-label">Measurement:</label>
+                    <input type="text" value="{{ingredient.measurement}}" name="measurement" id="" class="form-control">
+                </div>
             </div>
             {% endfor %}
-            <div class="col">
-                <label for="instructions">Instructions: <input type="text" value="{{recipe.instructions}}"
-                        name="instructions" id="" class="form-control"></label>
+            <div class="mb-2">
+                <label for="instructions" class="form-label">Instructions:</label>
+                <input type="text" value="{{recipe.instructions}}" name="instructions" id="" class="form-control">
             </div>
-            <div class="d-grid m-4 col-2">
-                <button type="submit" class="btn btn-success m-2">Save</button>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success mt-2 col-2">Save</button>
                 <form class="">
-                    <button class="btn btn-danger m-2" formaction="/recipes/{{recipe.id}}/delete"
+                    <button class="btn btn-danger mt-2 col-2" formaction="/recipes/{{recipe.id}}/delete"
                         formmethod="post">Delete
                         Recipe</button>
                 </form>

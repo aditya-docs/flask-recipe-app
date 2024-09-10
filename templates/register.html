@@ -3,25 +3,27 @@
 {% block content %}
 <h1>Create an Account</h1>
 <div class="container-fluid">
-    <form action="" id="add_user_form" method="post" class="form-control bg-secondary-subtle">
-        {{ form.hidden_tag() }}
+    <form action="" id="add_user_form" method="post" class="">
+        <div class="row">
+            {{ form.hidden_tag() }}
 
-        {% for field in form if field.widget.input_type != 'hidden'%}
+            {% for field in form if field.widget.input_type != 'hidden'%}
 
-        <div class="d-grid gap-2">
-            {{ field.label }}
-            {{field}}
+            <div class="col-6">
+                {{ field.label(class_="form-label") }}
+                {{field(class_="form-control")}}
 
-            {% if field.errors %}
-            {% for error in field.errors %}
-            <b>{{ error }}</b>
+                {% if field.errors %}
+                {% for error in field.errors %}
+                <b>{{ error }}</b>
+                {% endfor %}
+                {% endif %}
+            </div>
+
             {% endfor %}
-            {% endif %}
         </div>
-
-        {% endfor %}
-        <div class="d-grid m-4">
-            <button type="submit" class="btn btn-success">Sign Up</button>
+        <div class="d-flex justify-content-center row m-5">
+            <button type="submit" class="btn btn-success col-3">Sign Up</button>
         </div>
     </form>
 </div>

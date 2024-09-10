@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}Add Recipe{% endblock %}
 {% block content %}
-<h1>Add a Recipe!</h1>
+<h1 class="text-center">Add a Recipe!</h1>
 <div class="container-fluid">
-    <form action="" id="add_recipe_form" method="post" class="form-control bg-secondary-subtle">
+    <form action="" id="add_recipe_form" method="post" class="">
         {{ form.hidden_tag() }}
-        <div id="ingredient-fields-container">
+        <div id="ingredient-fields-container" class="d-flex justify-content-start row">
             {% for field in form if field.widget.input_type != 'hidden'%}
             {% if field.type != 'FieldList' %}
-            <div class="d-grid gap-2">
-                {{ field.label }}
-                {{field}}
+            <div class="col-8">
+                {{ field.label(class_="form-label") }}
+                {{field(class_="form-control")}}
                 {% if field.errors %}
                 {% for error in field.errors %}
                 <b>{{ error }}</b>
@@ -30,15 +30,15 @@
             {% endif %}
             {% endfor %}
         </div>
-</div>
 
-<div class="d-grid m-4 col-2">
-    <button type="button" class="btn btn-primary" id="add-field-btn">+</button>
-</div>
-<div class="d-grid m-4">
-    <button type="submit" class="btn btn-success">Add Recipe</button>
-</div>
-</form>
+
+        <div class="d-grid m-4 col-1">
+            <button type="button" class="btn btn-primary" id="add-field-btn">+</button>
+        </div>
+        <div class="d-grid col-3 m-4">
+            <button type="submit" class="btn btn-success">Add Recipe</button>
+        </div>
+    </form>
 </div>
 
 <script>
@@ -84,7 +84,6 @@
                 <button type="button" class="btn btn-danger d-grid m-4 col-1 remove-field-btn" onclick="removeField(this)">-</button>
                 `;
                 ingredientsList.appendChild(newField);
-                // updateFieldNames();
             }
         });
 
@@ -108,10 +107,8 @@
             const fieldCount = ingredientFieldsContainer.querySelectorAll('.ingredient-field').length;
             if (fieldCount > 1) {
                 btn.parentElement.remove();
-                // updateFieldNames();
             }
         };
     });
 </script>
-
 {% endblock %}
