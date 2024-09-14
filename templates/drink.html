@@ -1,27 +1,25 @@
 {% extends 'base.html' %}
 {% block title %} {{cocktail_name}} {% endblock %}
 {% block content %}
-<h1 class="text-center text-dark m-4">Great Choice!!!</h1>
+<h1 class="text-center text-light m-4">Great Choice!!!</h1>
 <div class="d-flex justify-content-center m-4">
     {% for recipe in recipes %}
-    <div class="card d-grid text-center col-8 bg-secondary-subtle">
+    <div class="card d-grid text-center col-5 bg-dark text-light">
         <div class="card-header">
             <h5>{{recipe.title}}</h5>
         </div>
         <div class="card-body">
-            <img src="{{recipe.image}}" class="m-2" height="450" width="450" alt="">
+            <img src="{{recipe.image}}" class="img-fluid rounded m-2" height="450" width="450" alt="">
             {% for ingredient in recipe.ingredients %}
-            <p>Ingredient: {{ingredient.ingredient_name}} Measurement: {{ingredient.measurement}}</p>
+            <p class="card-text">Ingredient: {{ingredient.ingredient_name}} Measurement: {{ingredient.measurement}}</p>
             {% endfor %}
-            <p>{{recipe.instructions}}</p>
-            <div class="card-footer">
-                {% if recipe.author == session['username'] %}
-                <form action="get" class="d-flex justify-content-center">
-                    <button formaction="/recipes/{{recipe.id}}/update"
-                        class="btn btn-sm btn-primary d-grid col-2">Edit</button>
-                </form>
-                {% endif %}
-            </div>
+            <p class="card-text">{{recipe.instructions}}</p>
+            {% if recipe.author == session['username'] %}
+            <form action="get" class="d-flex justify-content-center">
+                <button formaction="/recipes/{{recipe.id}}/update"
+                    class="btn btn-sm btn-primary d-grid col-2 m-2">Edit</button>
+            </form>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
