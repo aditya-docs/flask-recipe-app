@@ -1,5 +1,4 @@
-from flask import Flask, render_template, redirect, session, flash, request, url_for
-from flask_debugtoolbar import DebugToolbarExtension
+from flask import Flask, render_template, redirect, session, flash, request
 from forms import LoginForm, RegisterForm, RecipeForm, SearchForm
 from models import db, connect_db, User, Recipe, Ingredient, RecipeIngredient
 app = Flask(__name__)

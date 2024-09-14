@@ -15,12 +15,12 @@
     </form>
     <div class=" d-flex justify-content-center row">
         {% for recipe in recipes %}
-        <div class="card col-6 m-4 text-center bg-dark text-light">
+        <div class="card col-5 m-4 text-center bg-dark text-light">
             <div class="card-header">
                 <h5>{{recipe.title}}</h5>
             </div>
             <div class="card-body">
-                <img src="{{recipe.image}}" class="m-2" height="300" width="300" alt="">
+                <img src="{{recipe.image}}" class="img-fluid rounded m-2" height="350" width="350" alt="">
                 {% for ingredient in recipe.ingredients %}
                 <p class="card-text">Ingredient: {{ingredient.ingredient_name}} Measurement: {{ingredient.measurement}}
                 </p>
