@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Add Recipe{% endblock %}
 {% block content %}
-<h1 class="text-center">Add a Recipe!</h1>
+<h1 class="text-center text-light">Add a Recipe!</h1>
 <div class="container-fluid">
     <form action="" id="add_recipe_form" method="post" class="">
         {{ form.hidden_tag() }}
@@ -9,7 +9,7 @@
             {% for field in form if field.widget.input_type != 'hidden'%}
             {% if field.type != 'FieldList' %}
             <div class="col-8">
-                {{ field.label(class_="form-label") }}
+                {{ field.label(class_="form-label text-light") }}
                 {{field(class_="form-control")}}
                 {% if field.errors %}
                 {% for error in field.errors %}
@@ -18,8 +18,8 @@
                 {% endif %}
             </div>
             {% else %}
-            <div class="d-grid gap-2">
-                {{ field.label }}
+            <div class="d-grid gap-2 text-light">
+                {{ field.labe }}
                 {{ field }}
                 {% if field.errors %}
                 {% for error in field.errors %}
@@ -40,7 +40,6 @@
         </div>
     </form>
 </div>
-
 <script>
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -66,42 +65,26 @@
             const fieldCount = ingredientFieldsContainer.querySelectorAll('.ingredient-field').length;
             if (fieldCount < maxFields) {
                 const newField = document.createElement('li');
-                newField.className = 'ingredient-field';
+                newField.className = 'ingredient-field text-light';
                 newField.innerHTML = `
-                <label for="ingredients-${fieldCount}">Ingredient-${fieldCount + 1}</label>
-                <table id="ingredients-${fieldCount}">
-                    <tbody>
-                        <tr>
-                            <th><label for="ingredients-${fieldCount}-ingredient_name">Ingredient:</label></th>
-                                <td><input id="ingredients-${fieldCount}-ingredient_name" name="ingredients-${fieldCount}-ingredient_name" required="" type="text" value=""></td>
-                        </tr>
-                        <tr>
-                            <th><label for="ingredients-${fieldCount}-measurement">Measurement:</label></th>
-                                <td><input id="ingredients-${fieldCount}-measurement" name="ingredients-${fieldCount}-measurement" required="" type="text" value=""></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button type="button" class="btn btn-danger d-grid m-4 col-1 remove-field-btn" onclick="removeField(this)">-</button>
-                `;
+                    <label for="ingredients-${fieldCount}">Ingredient-${fieldCount + 1}</label>
+                    <table id="ingredients-${fieldCount}">
+                        <tbody>
+                            <tr>
+                                <th><label for="ingredients-${fieldCount}-ingredient_name">Ingredient:</label></th>
+                                    <td><input id="ingredients-${fieldCount}-ingredient_name" name="ingredients-${fieldCount}-ingredient_name" required="" type="text" value=""></td>
+                            </tr>
+                            <tr>
+                                <th><label for="ingredients-${fieldCount}-measurement">Measurement:</label></th>
+                                    <td><input id="ingredients-${fieldCount}-measurement" name="ingredients-${fieldCount}-measurement" required="" type="text" value=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-danger d-grid m-4 remove-field-btn" onclick="removeField(this)">-</button>
+                    `;
                 ingredientsList.appendChild(newField);
             }
         });
-
-        // addFieldBtn.addEventListener('click', function () {
-        //     const fieldCount = ingredientFieldsContainer.querySelectorAll('.ingredient-field').length;
-        //     if (fieldCount < maxFields) {
-        //         const newField = document.createElement('div');
-        //         newField.className = 'd-grid gap-2 ingredient-field';
-        //         newField.innerHTML = `
-        //             <label for="ingredients-${fieldCount}">Ingredient ${fieldCount + 1}</label>
-        //             <input type="text" name="ingredients-${fieldCount}" id="ingredients-${fieldCount}" class="form-control">
-        //             <button type="button" class="btn btn-danger remove-field-btn" onclick="removeField(this)">-</button>
-        //         `;
-        //         ingredientFieldsContainer.appendChild(newField);
-        //         updateFieldNames();
-        //     }
-        // });
-
 
         window.removeField = function (btn) {
             const fieldCount = ingredientFieldsContainer.querySelectorAll('.ingredient-field').length;

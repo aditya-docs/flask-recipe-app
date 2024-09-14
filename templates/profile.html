@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title%}{{user.username}}{% endblock %}
 {% block content %}
-<div class="container-fluid d-grid text-center">
+<div class="container-fluid d-grid text-center text-light">
     <h1>Profile</h1>
     <h4>First Name: {{user.first_name}}</h4>
     <h4>Last Name: {{user.last_name}}</h4>
@@ -15,24 +15,23 @@
     </form>
     <div class=" d-flex justify-content-center row">
         {% for recipe in recipes %}
-        <div class="card col-6 m-4 text-center bg-secondary-subtle">
+        <div class="card col-6 m-4 text-center bg-dark text-light">
             <div class="card-header">
                 <h5>{{recipe.title}}</h5>
             </div>
             <div class="card-body">
                 <img src="{{recipe.image}}" class="m-2" height="300" width="300" alt="">
                 {% for ingredient in recipe.ingredients %}
-                <p>Ingredient: {{ingredient.ingredient_name}} Measurement: {{ingredient.measurement}}</p>
+                <p class="card-text">Ingredient: {{ingredient.ingredient_name}} Measurement: {{ingredient.measurement}}
+                </p>
                 {% endfor %}
-                <p>{{recipe.instructions}}</p>
-                <div class="card-footer">
-                    {% if recipe.author == session['username'] %}
-                    <form action="get" class="d-flex justify-content-center">
-                        <button formaction="/recipes/{{recipe.id}}/update"
-                            class="btn btn-sm btn-primary d-grid col-2">Edit</button>
-                    </form>
-                    {% endif %}
-                </div>
+                <p class="card-text">{{recipe.instructions}}</p>
+                {% if recipe.author == session['username'] %}
+                <form action="get" class="d-flex justify-content-center">
+                    <button formaction="/recipes/{{recipe.id}}/update"
+                        class="btn btn-sm btn-primary d-grid col-2 m-2">Edit</button>
+                </form>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

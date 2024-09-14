@@ -2,12 +2,11 @@
 {% block title %}Alcoholics Asyncronous{% endblock %}
 {% block content %}
 <div class="container d-grid text-center">
-    <h1>Welcome to the Homepage!!!</h1>
     <div class="row  row-col-3 m-4">
         {%for drink in drinks%}
         <div class="col text-center">
             <img src="{{drink.image}}" height="300" width="300" class="image" alt="Random Drink"> <br>
-            <a href="/recipes/{{drink.title}}" class=" image-link fw-bold text-decoration-none">{{drink.title}}</a>
+            <a href="/recipes/{{drink.title}}" class="image-link fw-bold text-decoration-none">{{drink.title}}</a>
         </div>
         {% endfor %}
     </div>

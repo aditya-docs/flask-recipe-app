@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, session, flash, request
+from flask import Flask, render_template, redirect, session, flash, request, url_for
 from flask_debugtoolbar import DebugToolbarExtension
 from forms import LoginForm, RegisterForm, RecipeForm, SearchForm
 from models import db, connect_db, User, Recipe, Ingredient, RecipeIngredient
@@ -182,19 +182,19 @@ def delete_recipe(recipe_id):
 @app.route('/search', methods = ['GET', 'POST'])
 def search():
     form = SearchForm()
-    searched = form.searched.data
-    if form.validate_on_submit():
-        recipes = Recipe.query.filter(Recipe.title.like('%' + searched + '%'))
-        recipes = recipes.order_by(Recipe.title)
-
-        if 'username' not in session:
-            return render_template('search.html', form = form, searched = searched, recipes = recipes)
-        else:
-            username = session['username']
-            user = User.query.filter_by(username = username).first()
-            return render_template('search.html', form = form, searched = searched, user = user, recipes = recipes)
+    if form.searched.data == '':
+        return redirect('/')
+    searched = form.searched.data or request.args.get('searched')
+    page = request.args.get('page', 1, type=int)
+    recipes = Recipe.query.filter(Recipe.title.like('%' + searched + '%'))
+    recipes = recipes.order_by(Recipe.title).paginate(page = page, per_page = 4, error_out = False)
+    if 'username' not in session:
+        return render_template('search.html', form = form, searched = searched, recipes = recipes)
+    else:
+        username = session['username']
+        user = User.query.filter_by(username = username).first()
+        return render_template('search.html', form = form, searched = searched, user = user, recipes = recipes)
         
-    return redirect('/')
 
 @app.route('/recipes/<drink_title>')
 def get_drink(drink_title):

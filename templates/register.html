@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title%} Sign Up {% endblock %}
 {% block content %}
-<h1>Create an Account</h1>
+<h1 class="text-light">Create an Account</h1>
 <div class="container-fluid">
     <form action="" id="add_user_form" method="post" class="">
         <div class="row">
@@ -10,7 +10,7 @@
             {% for field in form if field.widget.input_type != 'hidden'%}
 
             <div class="col-6">
-                {{ field.label(class_="form-label") }}
+                {{ field.label(class_="form-label text-light") }}
                 {{field(class_="form-control")}}
 
                 {% if field.errors %}

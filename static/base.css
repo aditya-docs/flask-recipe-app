@@ -5,14 +5,41 @@
 
 .image-link {
     font-size: 2rem;
-    color: black;
+    color: white;
     transition: color 0.5s;
 }
 
 .image-link:hover {
-    color: white
+    color: #00a3ff;
 }
 
 .searchbar {
     border-radius: 4px;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url('layered-peaks-haikei.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.navbar {
+    background-color: #161717;
+}
+
+.footer {
+    margin-top: auto;
+    background-color: #161717;
+}
+
+.initial_ing {
+    color: white;
+}
+
+.recipe-card {
+    background-color: #161717;
 }

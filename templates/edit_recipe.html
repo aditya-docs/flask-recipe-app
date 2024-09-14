@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 {% block title %}Edit Recipe{% endblock %}
 {% block content %}
-<h1 class="text-center">Edit Recipe</h1>
+<h1 class="text-center text-light">Edit Recipe</h1>
 <div class="container">
     <div class="d-flex justify-content-center row">
         <form action="/recipes/{{recipe.id}}/update" id="edit_recipe_form" method="post" class="">
             <div class="mb-2 col-6">
-                <label for="title" class="form-label">Title:</label>
+                <label for="title" class="form-label text-light">Title:</label>
                 <input type="text" value="{{recipe.title}}" name="title" id="" class="form-control">
             </div>
             {% for ingredient in recipe.ingredients %}
             <div class="row">
                 <div class="col-6 mb-2">
-                    <label for="ingredient_name" class="form-label">Ingredient:</label>
+                    <label for="ingredient_name" class="form-label text-light">Ingredient:</label>
                     <input type="text" value="{{ingredient.ingredient_name}}" name="ingredient_name" id=""
                         class="form-control">
                 </div>
                 <div class="col-6 mb-2">
-                    <label for="measurement" class="form-label">Measurement:</label>
+                    <label for="measurement" class="form-label text-light">Measurement:</label>
                     <input type="text" value="{{ingredient.measurement}}" name="measurement" id="" class="form-control">
                 </div>
             </div>
             {% endfor %}
             <div class="mb-2">
-                <label for="instructions" class="form-label">Instructions:</label>
+                <label for="instructions" class="form-label text-light">Instructions:</label>
                 <input type="text" value="{{recipe.instructions}}" name="instructions" id="" class="form-control">
             </div>
             <div class="d-flex justify-content-between">
