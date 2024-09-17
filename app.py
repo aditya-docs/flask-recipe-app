@@ -1,15 +1,20 @@
 from flask import Flask, render_template, redirect, session, flash, request, url_for
-from flask_debugtoolbar import DebugToolbarExtension
+# from flask_debugtoolbar import DebugToolbarExtension
 from forms import LoginForm, RegisterForm, RecipeForm, SearchForm
 from models import db, connect_db, User, Recipe, Ingredient, RecipeIngredient
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///cocktails"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('CONNECTION_STRING')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] =  True
 app.config['SECRET_KEY'] = 'chizzle'
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-toolbar = DebugToolbarExtension(app)
+# toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
 with app.app_context():
@@ -160,7 +165,6 @@ def edit_recipe(recipe_id):
     i = 0
     while i < len(recipe.ingredients):
         for ingredient in recipe.ingredients:
-            # ingredient = Ingredient.query.filter_by(id = ingredient.id).first()
             ingredient.ingredient_name = zipped_ingredients[i][0]
             ingredient.measurement = zipped_ingredients[i][1]
             print(ingredient)
