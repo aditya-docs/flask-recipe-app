@@ -9,7 +9,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('CONNECTION_STRING')
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///cocktails"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] =  True
 app.config['SECRET_KEY'] = 'chizzle'
