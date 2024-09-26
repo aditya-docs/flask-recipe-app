@@ -76,7 +76,7 @@ python-dateutil==2.8.1
 python-dotenv==1.0.1
 pythran==0.10.0
 pytz==2022.1
-PyYAML==5.4.1
+requests==2.32.3
 scipy==1.8.0
 SecretStorage==3.3.1
 six==1.16.0
