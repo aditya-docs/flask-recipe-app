@@ -86,7 +86,6 @@ sympy==1.9
 tomli==2.0.1
 traitlets==5.14.3
 typing_extensions==4.12.2
-ubuntu-advantage-tools==8001
 ufoLib2==0.13.1
 ufw==0.36.1
 unattended-upgrades==0.1
