@@ -83,7 +83,6 @@ soupsieve==2.3.1
 SQLAlchemy==2.0.31
 stack-data==0.6.3
 sympy==1.9
-systemd-python==234
 tomli==2.0.1
 traitlets==5.14.3
 typing_extensions==4.12.2
