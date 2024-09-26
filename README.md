@@ -24,4 +24,4 @@ This app utilizes a multitude of programming languages and subsequent packages i
 --Bootstrap
 -CSS
 
-Deployment Link: https://alcoholicsasynchronous.vercel.app/
+Deployment Link: 

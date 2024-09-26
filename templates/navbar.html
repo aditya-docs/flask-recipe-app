@@ -4,20 +4,20 @@
         {% if not session['username'] %}
         <a href="/login" class="navbar-brand text-light p-2">Login</a>
         <a href="/register" class="btn btn-primary text-center text-light me-auto p-2 me-4">Create an Account</a>
-        <a href="/" class="me-auto">
+        <a href="/" class="me-auto d-none d-xl-flex">
             <img src="/static/alcoholics-asynchronous-high-resolution-logo-transparent.png" width="600" height="60">
         </a>
         {% endif %}
         {% if session['username'] %}
         <a href="/users/{{session['username']}}" class="navbar-brand text-light">Profile</a>
         <a href="/logout" class="btn btn-danger fw-bold me-auto">Logout</a>
-        <a href="/" class="me-auto">
+        <a href="/" class="me-auto d-none d-xl-flex">
             <img src="/static/alcoholics-asynchronous-high-resolution-logo-transparent.png" width="600" height="60">
         </a>
         <a href="/users/{{user.username}}/recipe/add" class="btn btn-success mx-4 fw-bold">Add a Recipe</a>
 
         {% endif %}
-        <form method="POST" action="{{url_for('search')}}" class="d-flex input-group w-auto me-2">
+        <form method="POST" action="{{url_for('search')}}" class="d-none d-sm-flex input-group w-auto me-2">
             {{form.hidden_tag()}}<input type="search" placeholder="Search" name="searched"
                 class="searchbar form-control rounded">
             <div class="mx-2">
