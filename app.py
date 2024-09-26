@@ -9,7 +9,7 @@ load_dotenv()
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SUPABASE_DATABASE_URI') 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres.qoduiyklcmujxjmecobs:j63uCKf7PQY3FU4o@aws-0-us-east-1.pooler.supabase.com:5432/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] =  True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
