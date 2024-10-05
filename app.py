@@ -28,12 +28,14 @@ def base():
 @app.route('/')
 def homepage():
     drinks = Recipe.random_drinks()
+    print(drinks)  # Log the drinks fetched
     if 'username' not in session:
-        return render_template('home.html', drinks = drinks)
+        return render_template('home.html', drinks=drinks)
     else:
         username = session['username']
-        user = User.query.filter_by(username = username).first_or_404()
-        return render_template('home.html', drinks = drinks, user = user)
+        user = User.query.filter_by(username=username).first_or_404()
+        print(user)  # Log the user fetched
+        return render_template('home.html', drinks=drinks, user=user)
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
